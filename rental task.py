@@ -1,4 +1,4 @@
-''' rental cars '''
+''' rental cars, this program is designed to rent out cars every day'''
 ask = True
 error = False 
 car_confirmation = True
@@ -19,7 +19,7 @@ car = len(cars)
 
     
 while day == True:
-    if amount_of_cars == 9:
+    if amount_of_cars == 8:
         car_confirmation = False
         ask = False
         day = False
@@ -61,15 +61,14 @@ while day == True:
             else:
                 error = True
         if error == False:
-            name = True 
-            names.append(person_name)
-            print(names)
+            start = True
         else:
-            print("please enter your name and only letters in the english alphabet")        
+            print("please enter your name and only letters in the english alphabet")     
+            start = False
         while start == True:
             for i in range(1,car+1):
                 print (f"{i}. {cars[i-1]} - {seats[i-1]} seats {availability[i-1]}")
-            print("What car would you like to resserve?(number)")
+            print("What car would you like to reserve?(number)")
             ask = True
             while ask == True:
                 try:
@@ -95,13 +94,15 @@ while day == True:
                             if error == False:
                                 if yes_no == "no":
                                     car_confirmation = False
+                                    start = False
+                                    name = True
                                     ask = False 
                                 elif yes_no == "yes":
+                                    names.append(person_name)
                                     car_confirmation = False
                                     name = True  
                                     start = False
                                     ask = False
-                                    
                                     print("Thank you for your reservation")
                                     availability[choice-1] = "unavailable" 
                                     amount_of_cars = amount_of_cars + 1 
@@ -109,15 +110,15 @@ while day == True:
                                     print("please enter either yes or no")
                             else:
                                 print("please enter yes or no and only letters in the english alphabet")
-                                    
-                            
+                                                               
                 except ValueError:
                     print("please enter a digit between 1 and 9")
+#end of the day checker of how many, if any, cars were booked 
 if amount_of_cars == 0:
     print("there were no cars reserved today")
 else:
-    print(f"today there were {amount_of_cars} reserved which were:")
-    for i in range(1,car+1):
-        if availability == "unavailable":
-            print(f"{i-1}. {cars[i-1]}")
+    print(f"today there were {amount_of_cars} cars reserved which were:")
+    for i in range(0,9):
+        if availability[i] == "unavailable":
+            print(f"{i+1}. {cars[i]} rented by {names[i]}")
         
