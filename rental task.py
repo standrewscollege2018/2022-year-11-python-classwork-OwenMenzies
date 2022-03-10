@@ -11,7 +11,7 @@ amount_of_cars = 0
 cars = ["Suzuki Van", "Toyota Corolla", "Honda CRV", "Suzuki Swift", "Mitsubishi Airtrek", "Nissan DC Ute", "Toyota Previa", "Toyota Hi Ace", "Toyota Hi Ace"]
 seats =["2","4","4","4","4","4","7","12","12"]
 availability = ["avalible", "available", "available", "available", "available", "available", "available", "available", "available"]
-names = []
+names = ["","","","","","","","",""]
 #set up lists
 #availability[1] = "unavailable" 
 car = len(cars)
@@ -40,10 +40,12 @@ while day == True:
             ask = False
             day = False
             start = False
-            name = True          
+            name = True      
+            #set everything to false to make sure that the end occurs
         elif car_day == "yes":
             start = True
             name = False
+            #foreshadowing for later on talk
             print("What is your name?")
         else:
             print("please enter either yes or no")
@@ -98,7 +100,7 @@ while day == True:
                                     name = True
                                     ask = False 
                                 elif yes_no == "yes":
-                                    names.append(person_name)
+                                    names[choice] = person_name
                                     car_confirmation = False
                                     name = True  
                                     start = False
@@ -118,7 +120,7 @@ if amount_of_cars == 0:
     print("there were no cars reserved today")
 else:
     print(f"today there were {amount_of_cars} cars reserved which were:")
-    for i in range(0,9):
+    for i in range(0,9): 
         if availability[i] == "unavailable":
-            print(f"{i+1}. {cars[i]} rented by {names[i]}")
+            print(f"{i+1}. {cars[i]} rented by {names[i+1]}")
         
